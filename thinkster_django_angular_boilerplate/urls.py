@@ -21,6 +21,6 @@ urlpatterns = patterns(
     '',
 
     url('^api/v1/users/$', UserCreateView.as_view(), name='user-create'),
-    url('^', TemplateView.as_view(template_name='index.html')),
-    # url('^', csrf_view),
+    # url('^', CsrfTemplateView.as_view(template_name='index.html')),
+    url('^', csrf_view),
 )

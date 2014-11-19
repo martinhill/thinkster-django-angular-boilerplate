@@ -3,7 +3,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 from django.shortcuts import render_to_response
 from django.views.generic.base import TemplateView
-from authentication.views import UserCreateView
+from authentication.views import UserCreateView, LoginView
 
 
 class CsrfTemplateView(TemplateView):
@@ -20,7 +20,8 @@ def csrf_view(request):
 urlpatterns = patterns(
     '',
 
-    url('^api/v1/users/$', UserCreateView.as_view(), name='user-create'),
-    # url('^', CsrfTemplateView.as_view(template_name='index.html')),
-    url('^', csrf_view),
+    url(r'^api/v1/users/$', UserCreateView.as_view(), name='user-create'),
+    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
+    url('^', TemplateView.as_view(template_name='index.html')),
+    # url(r'^', csrf_view),
 )

@@ -18,5 +18,11 @@
 		function register() {
 			Authentication.register(vm.username, vm.password, vm.email);
 		}
+
+		function activate() {
+			if (Authentication.isAuthenticated()) {
+				$location.url('/');
+			}
+		}
 	}
 })();

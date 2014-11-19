@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics, permissions
 from authentication.serializers import UserSerializer
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework import status, views
 from rest_framework.response import Response
 import json
@@ -37,3 +37,12 @@ class LoginView(views.APIView):
             return Response({
                 'error': 'Looks like your username or password is wrong. :('
             }, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, format=None):
+        logout(request)
+
+        return Response({'success': True})

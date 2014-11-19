@@ -15,6 +15,9 @@
 		var vm = this;
 
 		vm.register = register
+
+		activate();
+		
 		function register() {
 			Authentication.register(vm.username, vm.password, vm.email);
 		}

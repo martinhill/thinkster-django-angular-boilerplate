@@ -4,7 +4,8 @@
 	angular.module('thinkster', [
 		'thinkster.config',
 		'thinkster.routes',
-		'thinkster.authentication'
+		'thinkster.authentication',
+		'thinkster.layout'
 		]);
 
 	angular.module('thinkster.config', []);
@@ -17,6 +18,6 @@
 
 	function run($http) {
 		$http.defaults.xsrfHeaderName = 'X-CSRFToken';
-		$http.defaults.xsrfCookieNmae = 'csrftoken';
+		$http.defaults.xsrfCookieName = 'csrftoken';
 	}
 })();

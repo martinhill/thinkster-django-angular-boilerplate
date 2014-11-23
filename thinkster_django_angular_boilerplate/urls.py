@@ -1,7 +1,14 @@
 from django.conf.urls import patterns, url, include
 from django.views.generic.base import TemplateView
 from rest_framework import routers
-from authentication.views import AccountViewSet, LoginView
+from authentication.views import AccountViewSet, LoginView, LogoutView
+from django.shortcuts import render_to_response
+from django.views.decorators.csrf import ensure_csrf_cookie
+
+
+@ensure_csrf_cookie
+def csrf_view(request):
+    return render_to_response("index.html", {})
 
 
 router = routers.SimpleRouter()
@@ -12,6 +19,7 @@ urlpatterns = patterns(
 
     url(r'api/v1/', include(router.urls)),
     url(r'api/v1/auth/login/$', LoginView.as_view(), name='login'),
-    url('^', TemplateView.as_view(template_name='index.html'),
-        name='index'),
+    url(r'api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^', TemplateView.as_view(template_name='index.html'), name='index'),
+    # url(r'^', csrf_view, name='index')
 )

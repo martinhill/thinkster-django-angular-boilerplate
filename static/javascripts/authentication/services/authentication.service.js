@@ -23,6 +23,7 @@
     var Authentication = {
       register: register,
       login: login,
+      logout: logout,
       getAuthenticatedAccount: getAuthenticatedAccount,
       isAuthenticated: isAuthenticated,
       setAuthenticatedAccount: setAuthenticatedAccount,
@@ -69,6 +70,20 @@
       }
 
       function loginErrorFn (data, status, headers, config) {
+        console.error('Epic fail!');
+      }
+    }
+
+    function logout () {
+      return $http.post('/api/v1/auth/logout/')
+        .then(logoutSuccessFn, logoutErrorFn);
+
+      function logoutSuccessFn (data, status, headers, config) {
+        Authentication.unauthenticate();
+        window.location = '/';
+      }
+
+      function logoutErrorFn (data, status, headers, config) {
         console.error('Epic fail!');
       }
     }

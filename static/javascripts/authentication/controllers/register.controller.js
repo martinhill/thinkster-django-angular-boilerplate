@@ -19,6 +19,8 @@
 
     vm.register = register;
 
+    activate();
+
     /**
     * @name register
     * @desc Register a new user
@@ -26,6 +28,12 @@
     */
     function register() {
       Authentication.register(vm.email, vm.password, vm.username);
+    }
+
+    function activate() {
+      if (Authentication.isAuthenticated()) {
+        $location.url('/');
+      }
     }
   }
 })();

@@ -18,7 +18,7 @@
 		function activate() {
 			Posts.all().then(postsSuccessFn, postsErrorFn);
 
-			$scope.$on('post.create', function(event, post) {
+			$scope.$on('post.created', function(event, post) {
 				vm.posts.unshift(post);
 			});
 

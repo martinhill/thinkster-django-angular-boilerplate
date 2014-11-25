@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, url, include
 from django.views.generic.base import TemplateView
-from rest_framework import routers
+from rest_framework_nested import routers
 from authentication.views import AccountViewSet, LoginView, LogoutView
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import ensure_csrf_cookie
 from posts.views import AccountPostsViewSet, PostViewSet
+
 
 @ensure_csrf_cookie
 def csrf_view(request):
